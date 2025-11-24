@@ -136,9 +136,9 @@ export const CapacityScalarFieldEnum = {
   date: 'date',
   totalCapacity: 'totalCapacity',
   usedCapacity: 'usedCapacity',
-  closed: 'closed',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  closed: 'closed'
 } as const
 
 export type CapacityScalarFieldEnum = (typeof CapacityScalarFieldEnum)[keyof typeof CapacityScalarFieldEnum]
@@ -151,9 +151,9 @@ export const StoreSettingsScalarFieldEnum = {
   defaultDespatchLead: 'defaultDespatchLead',
   defaultDeliveryLead: 'defaultDeliveryLead',
   countryOverrides: 'countryOverrides',
-  accessToken: 'accessToken',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  accessToken: 'accessToken'
 } as const
 
 export type StoreSettingsScalarFieldEnum = (typeof StoreSettingsScalarFieldEnum)[keyof typeof StoreSettingsScalarFieldEnum]

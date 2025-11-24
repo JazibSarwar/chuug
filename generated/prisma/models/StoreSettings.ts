@@ -44,9 +44,9 @@ export type StoreSettingsMinAggregateOutputType = {
   timezone: string | null
   defaultDespatchLead: number | null
   defaultDeliveryLead: number | null
-  accessToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accessToken: string | null
 }
 
 export type StoreSettingsMaxAggregateOutputType = {
@@ -55,9 +55,9 @@ export type StoreSettingsMaxAggregateOutputType = {
   timezone: string | null
   defaultDespatchLead: number | null
   defaultDeliveryLead: number | null
-  accessToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  accessToken: string | null
 }
 
 export type StoreSettingsCountAggregateOutputType = {
@@ -67,9 +67,9 @@ export type StoreSettingsCountAggregateOutputType = {
   defaultDespatchLead: number
   defaultDeliveryLead: number
   countryOverrides: number
-  accessToken: number
   createdAt: number
   updatedAt: number
+  accessToken: number
   _all: number
 }
 
@@ -92,9 +92,9 @@ export type StoreSettingsMinAggregateInputType = {
   timezone?: true
   defaultDespatchLead?: true
   defaultDeliveryLead?: true
-  accessToken?: true
   createdAt?: true
   updatedAt?: true
+  accessToken?: true
 }
 
 export type StoreSettingsMaxAggregateInputType = {
@@ -103,9 +103,9 @@ export type StoreSettingsMaxAggregateInputType = {
   timezone?: true
   defaultDespatchLead?: true
   defaultDeliveryLead?: true
-  accessToken?: true
   createdAt?: true
   updatedAt?: true
+  accessToken?: true
 }
 
 export type StoreSettingsCountAggregateInputType = {
@@ -115,9 +115,9 @@ export type StoreSettingsCountAggregateInputType = {
   defaultDespatchLead?: true
   defaultDeliveryLead?: true
   countryOverrides?: true
-  accessToken?: true
   createdAt?: true
   updatedAt?: true
+  accessToken?: true
   _all?: true
 }
 
@@ -214,9 +214,9 @@ export type StoreSettingsGroupByOutputType = {
   defaultDespatchLead: number
   defaultDeliveryLead: number
   countryOverrides: runtime.JsonValue | null
-  accessToken: string | null
   createdAt: Date
   updatedAt: Date
+  accessToken: string | null
   _count: StoreSettingsCountAggregateOutputType | null
   _avg: StoreSettingsAvgAggregateOutputType | null
   _sum: StoreSettingsSumAggregateOutputType | null
@@ -249,9 +249,9 @@ export type StoreSettingsWhereInput = {
   defaultDespatchLead?: Prisma.IntFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntFilter<"StoreSettings"> | number
   countryOverrides?: Prisma.JsonNullableFilter<"StoreSettings">
-  accessToken?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
+  accessToken?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
 }
 
 export type StoreSettingsOrderByWithRelationInput = {
@@ -261,9 +261,9 @@ export type StoreSettingsOrderByWithRelationInput = {
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
   countryOverrides?: Prisma.SortOrderInput | Prisma.SortOrder
-  accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type StoreSettingsWhereUniqueInput = Prisma.AtLeast<{
@@ -276,9 +276,9 @@ export type StoreSettingsWhereUniqueInput = Prisma.AtLeast<{
   defaultDespatchLead?: Prisma.IntFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntFilter<"StoreSettings"> | number
   countryOverrides?: Prisma.JsonNullableFilter<"StoreSettings">
-  accessToken?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
   createdAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
+  accessToken?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
 }, "id" | "shop">
 
 export type StoreSettingsOrderByWithAggregationInput = {
@@ -288,9 +288,9 @@ export type StoreSettingsOrderByWithAggregationInput = {
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
   countryOverrides?: Prisma.SortOrderInput | Prisma.SortOrder
-  accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StoreSettingsCountOrderByAggregateInput
   _avg?: Prisma.StoreSettingsAvgOrderByAggregateInput
   _max?: Prisma.StoreSettingsMaxOrderByAggregateInput
@@ -308,9 +308,9 @@ export type StoreSettingsScalarWhereWithAggregatesInput = {
   defaultDespatchLead?: Prisma.IntWithAggregatesFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntWithAggregatesFilter<"StoreSettings"> | number
   countryOverrides?: Prisma.JsonNullableWithAggregatesFilter<"StoreSettings">
-  accessToken?: Prisma.StringNullableWithAggregatesFilter<"StoreSettings"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StoreSettings"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StoreSettings"> | Date | string
+  accessToken?: Prisma.StringNullableWithAggregatesFilter<"StoreSettings"> | string | null
 }
 
 export type StoreSettingsCreateInput = {
@@ -319,9 +319,9 @@ export type StoreSettingsCreateInput = {
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessToken?: string | null
 }
 
 export type StoreSettingsUncheckedCreateInput = {
@@ -331,9 +331,9 @@ export type StoreSettingsUncheckedCreateInput = {
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessToken?: string | null
 }
 
 export type StoreSettingsUpdateInput = {
@@ -342,9 +342,9 @@ export type StoreSettingsUpdateInput = {
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoreSettingsUncheckedUpdateInput = {
@@ -354,9 +354,9 @@ export type StoreSettingsUncheckedUpdateInput = {
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoreSettingsCreateManyInput = {
@@ -366,9 +366,9 @@ export type StoreSettingsCreateManyInput = {
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accessToken?: string | null
 }
 
 export type StoreSettingsUpdateManyMutationInput = {
@@ -377,9 +377,9 @@ export type StoreSettingsUpdateManyMutationInput = {
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoreSettingsUncheckedUpdateManyInput = {
@@ -389,9 +389,9 @@ export type StoreSettingsUncheckedUpdateManyInput = {
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
   countryOverrides?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoreSettingsCountOrderByAggregateInput = {
@@ -401,9 +401,9 @@ export type StoreSettingsCountOrderByAggregateInput = {
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
   countryOverrides?: Prisma.SortOrder
-  accessToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrder
 }
 
 export type StoreSettingsAvgOrderByAggregateInput = {
@@ -418,9 +418,9 @@ export type StoreSettingsMaxOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
-  accessToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrder
 }
 
 export type StoreSettingsMinOrderByAggregateInput = {
@@ -429,9 +429,9 @@ export type StoreSettingsMinOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
-  accessToken?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accessToken?: Prisma.SortOrder
 }
 
 export type StoreSettingsSumOrderByAggregateInput = {
@@ -449,9 +449,9 @@ export type StoreSettingsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   defaultDespatchLead?: boolean
   defaultDeliveryLead?: boolean
   countryOverrides?: boolean
-  accessToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessToken?: boolean
 }, ExtArgs["result"]["storeSettings"]>
 
 export type StoreSettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -461,9 +461,9 @@ export type StoreSettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   defaultDespatchLead?: boolean
   defaultDeliveryLead?: boolean
   countryOverrides?: boolean
-  accessToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessToken?: boolean
 }, ExtArgs["result"]["storeSettings"]>
 
 export type StoreSettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -473,9 +473,9 @@ export type StoreSettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   defaultDespatchLead?: boolean
   defaultDeliveryLead?: boolean
   countryOverrides?: boolean
-  accessToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessToken?: boolean
 }, ExtArgs["result"]["storeSettings"]>
 
 export type StoreSettingsSelectScalar = {
@@ -485,12 +485,12 @@ export type StoreSettingsSelectScalar = {
   defaultDespatchLead?: boolean
   defaultDeliveryLead?: boolean
   countryOverrides?: boolean
-  accessToken?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accessToken?: boolean
 }
 
-export type StoreSettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shop" | "timezone" | "defaultDespatchLead" | "defaultDeliveryLead" | "countryOverrides" | "accessToken" | "createdAt" | "updatedAt", ExtArgs["result"]["storeSettings"]>
+export type StoreSettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shop" | "timezone" | "defaultDespatchLead" | "defaultDeliveryLead" | "countryOverrides" | "createdAt" | "updatedAt" | "accessToken", ExtArgs["result"]["storeSettings"]>
 
 export type $StoreSettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StoreSettings"
@@ -502,9 +502,9 @@ export type $StoreSettingsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     defaultDespatchLead: number
     defaultDeliveryLead: number
     countryOverrides: runtime.JsonValue | null
-    accessToken: string | null
     createdAt: Date
     updatedAt: Date
+    accessToken: string | null
   }, ExtArgs["result"]["storeSettings"]>
   composites: {}
 }
@@ -934,9 +934,9 @@ export interface StoreSettingsFieldRefs {
   readonly defaultDespatchLead: Prisma.FieldRef<"StoreSettings", 'Int'>
   readonly defaultDeliveryLead: Prisma.FieldRef<"StoreSettings", 'Int'>
   readonly countryOverrides: Prisma.FieldRef<"StoreSettings", 'Json'>
-  readonly accessToken: Prisma.FieldRef<"StoreSettings", 'String'>
   readonly createdAt: Prisma.FieldRef<"StoreSettings", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StoreSettings", 'DateTime'>
+  readonly accessToken: Prisma.FieldRef<"StoreSettings", 'String'>
 }
     
 

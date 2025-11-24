@@ -43,9 +43,9 @@ export type CapacityMinAggregateOutputType = {
   date: Date | null
   totalCapacity: number | null
   usedCapacity: number | null
-  closed: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  closed: boolean | null
 }
 
 export type CapacityMaxAggregateOutputType = {
@@ -53,9 +53,9 @@ export type CapacityMaxAggregateOutputType = {
   date: Date | null
   totalCapacity: number | null
   usedCapacity: number | null
-  closed: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  closed: boolean | null
 }
 
 export type CapacityCountAggregateOutputType = {
@@ -63,9 +63,9 @@ export type CapacityCountAggregateOutputType = {
   date: number
   totalCapacity: number
   usedCapacity: number
-  closed: number
   createdAt: number
   updatedAt: number
+  closed: number
   _all: number
 }
 
@@ -87,9 +87,9 @@ export type CapacityMinAggregateInputType = {
   date?: true
   totalCapacity?: true
   usedCapacity?: true
-  closed?: true
   createdAt?: true
   updatedAt?: true
+  closed?: true
 }
 
 export type CapacityMaxAggregateInputType = {
@@ -97,9 +97,9 @@ export type CapacityMaxAggregateInputType = {
   date?: true
   totalCapacity?: true
   usedCapacity?: true
-  closed?: true
   createdAt?: true
   updatedAt?: true
+  closed?: true
 }
 
 export type CapacityCountAggregateInputType = {
@@ -107,9 +107,9 @@ export type CapacityCountAggregateInputType = {
   date?: true
   totalCapacity?: true
   usedCapacity?: true
-  closed?: true
   createdAt?: true
   updatedAt?: true
+  closed?: true
   _all?: true
 }
 
@@ -204,9 +204,9 @@ export type CapacityGroupByOutputType = {
   date: Date
   totalCapacity: number
   usedCapacity: number
-  closed: boolean
   createdAt: Date
   updatedAt: Date
+  closed: boolean
   _count: CapacityCountAggregateOutputType | null
   _avg: CapacityAvgAggregateOutputType | null
   _sum: CapacitySumAggregateOutputType | null
@@ -237,9 +237,9 @@ export type CapacityWhereInput = {
   date?: Prisma.DateTimeFilter<"Capacity"> | Date | string
   totalCapacity?: Prisma.IntFilter<"Capacity"> | number
   usedCapacity?: Prisma.IntFilter<"Capacity"> | number
-  closed?: Prisma.BoolFilter<"Capacity"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Capacity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Capacity"> | Date | string
+  closed?: Prisma.BoolFilter<"Capacity"> | boolean
 }
 
 export type CapacityOrderByWithRelationInput = {
@@ -247,9 +247,9 @@ export type CapacityOrderByWithRelationInput = {
   date?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   usedCapacity?: Prisma.SortOrder
-  closed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  closed?: Prisma.SortOrder
 }
 
 export type CapacityWhereUniqueInput = Prisma.AtLeast<{
@@ -260,9 +260,9 @@ export type CapacityWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CapacityWhereInput | Prisma.CapacityWhereInput[]
   totalCapacity?: Prisma.IntFilter<"Capacity"> | number
   usedCapacity?: Prisma.IntFilter<"Capacity"> | number
-  closed?: Prisma.BoolFilter<"Capacity"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Capacity"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Capacity"> | Date | string
+  closed?: Prisma.BoolFilter<"Capacity"> | boolean
 }, "id" | "date">
 
 export type CapacityOrderByWithAggregationInput = {
@@ -270,9 +270,9 @@ export type CapacityOrderByWithAggregationInput = {
   date?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   usedCapacity?: Prisma.SortOrder
-  closed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  closed?: Prisma.SortOrder
   _count?: Prisma.CapacityCountOrderByAggregateInput
   _avg?: Prisma.CapacityAvgOrderByAggregateInput
   _max?: Prisma.CapacityMaxOrderByAggregateInput
@@ -288,18 +288,18 @@ export type CapacityScalarWhereWithAggregatesInput = {
   date?: Prisma.DateTimeWithAggregatesFilter<"Capacity"> | Date | string
   totalCapacity?: Prisma.IntWithAggregatesFilter<"Capacity"> | number
   usedCapacity?: Prisma.IntWithAggregatesFilter<"Capacity"> | number
-  closed?: Prisma.BoolWithAggregatesFilter<"Capacity"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Capacity"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Capacity"> | Date | string
+  closed?: Prisma.BoolWithAggregatesFilter<"Capacity"> | boolean
 }
 
 export type CapacityCreateInput = {
   date: Date | string
   totalCapacity: number
   usedCapacity?: number
-  closed?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  closed?: boolean
 }
 
 export type CapacityUncheckedCreateInput = {
@@ -307,18 +307,18 @@ export type CapacityUncheckedCreateInput = {
   date: Date | string
   totalCapacity: number
   usedCapacity?: number
-  closed?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  closed?: boolean
 }
 
 export type CapacityUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalCapacity?: Prisma.IntFieldUpdateOperationsInput | number
   usedCapacity?: Prisma.IntFieldUpdateOperationsInput | number
-  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CapacityUncheckedUpdateInput = {
@@ -326,9 +326,9 @@ export type CapacityUncheckedUpdateInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalCapacity?: Prisma.IntFieldUpdateOperationsInput | number
   usedCapacity?: Prisma.IntFieldUpdateOperationsInput | number
-  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CapacityCreateManyInput = {
@@ -336,18 +336,18 @@ export type CapacityCreateManyInput = {
   date: Date | string
   totalCapacity: number
   usedCapacity?: number
-  closed?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  closed?: boolean
 }
 
 export type CapacityUpdateManyMutationInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalCapacity?: Prisma.IntFieldUpdateOperationsInput | number
   usedCapacity?: Prisma.IntFieldUpdateOperationsInput | number
-  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CapacityUncheckedUpdateManyInput = {
@@ -355,9 +355,9 @@ export type CapacityUncheckedUpdateManyInput = {
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   totalCapacity?: Prisma.IntFieldUpdateOperationsInput | number
   usedCapacity?: Prisma.IntFieldUpdateOperationsInput | number
-  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  closed?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type CapacityCountOrderByAggregateInput = {
@@ -365,9 +365,9 @@ export type CapacityCountOrderByAggregateInput = {
   date?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   usedCapacity?: Prisma.SortOrder
-  closed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  closed?: Prisma.SortOrder
 }
 
 export type CapacityAvgOrderByAggregateInput = {
@@ -381,9 +381,9 @@ export type CapacityMaxOrderByAggregateInput = {
   date?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   usedCapacity?: Prisma.SortOrder
-  closed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  closed?: Prisma.SortOrder
 }
 
 export type CapacityMinOrderByAggregateInput = {
@@ -391,9 +391,9 @@ export type CapacityMinOrderByAggregateInput = {
   date?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   usedCapacity?: Prisma.SortOrder
-  closed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  closed?: Prisma.SortOrder
 }
 
 export type CapacitySumOrderByAggregateInput = {
@@ -409,9 +409,9 @@ export type CapacitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   date?: boolean
   totalCapacity?: boolean
   usedCapacity?: boolean
-  closed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  closed?: boolean
 }, ExtArgs["result"]["capacity"]>
 
 export type CapacitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -419,9 +419,9 @@ export type CapacitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   date?: boolean
   totalCapacity?: boolean
   usedCapacity?: boolean
-  closed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  closed?: boolean
 }, ExtArgs["result"]["capacity"]>
 
 export type CapacitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -429,9 +429,9 @@ export type CapacitySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   date?: boolean
   totalCapacity?: boolean
   usedCapacity?: boolean
-  closed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  closed?: boolean
 }, ExtArgs["result"]["capacity"]>
 
 export type CapacitySelectScalar = {
@@ -439,12 +439,12 @@ export type CapacitySelectScalar = {
   date?: boolean
   totalCapacity?: boolean
   usedCapacity?: boolean
-  closed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  closed?: boolean
 }
 
-export type CapacityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "totalCapacity" | "usedCapacity" | "closed" | "createdAt" | "updatedAt", ExtArgs["result"]["capacity"]>
+export type CapacityOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "totalCapacity" | "usedCapacity" | "createdAt" | "updatedAt" | "closed", ExtArgs["result"]["capacity"]>
 
 export type $CapacityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Capacity"
@@ -454,9 +454,9 @@ export type $CapacityPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     date: Date
     totalCapacity: number
     usedCapacity: number
-    closed: boolean
     createdAt: Date
     updatedAt: Date
+    closed: boolean
   }, ExtArgs["result"]["capacity"]>
   composites: {}
 }
@@ -884,9 +884,9 @@ export interface CapacityFieldRefs {
   readonly date: Prisma.FieldRef<"Capacity", 'DateTime'>
   readonly totalCapacity: Prisma.FieldRef<"Capacity", 'Int'>
   readonly usedCapacity: Prisma.FieldRef<"Capacity", 'Int'>
-  readonly closed: Prisma.FieldRef<"Capacity", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Capacity", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Capacity", 'DateTime'>
+  readonly closed: Prisma.FieldRef<"Capacity", 'Boolean'>
 }
     
 
