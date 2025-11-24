@@ -5,6 +5,6 @@ export default defineConfig({
   schema: 'prisma/schema.prisma',
   migrations: { path: 'prisma/migrations' },
   datasource: {
-    url: "postgresql://postgres:M0CCz3Id25jJdN8c@db.ifgzxwgiktsiozenybor.supabase.co:5432/postgres?sslmode=require", 
+    url: env('DATABASE_URL'), 
   },
 });
