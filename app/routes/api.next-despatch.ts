@@ -103,62 +103,152 @@
 //   );
 // };
 // app/routes/api.next-despatch.ts
+
+//Current ....................
+// import prisma from "app/db.server";
+// import { DateTime } from "luxon";
+// import type { LoaderFunctionArgs } from "react-router";
+// import { getLeadTimes } from "app/services/allocationService";
+
+// export async function loader({ request }: LoaderFunctionArgs) {
+//   const url = new URL(request.url);
+//   const country = url.searchParams.get("country") ?? "GB";
+
+//   // Load the only store’s settings
+//   const settings = await prisma.storeSettings.findFirst();
+
+//   if (!settings) {
+//     return Response.json(
+//       { error: "Store settings not found" },
+//       { status: 500 }
+//     );
+//   }
+
+//   const tz = settings.timezone ?? "Europe/London";
+//   const { despatchLead, deliveryLead } = await getLeadTimes(settings, country);
+
+//   // Find next available despatch date
+//   let cursor = DateTime.now().setZone(tz).startOf("day");
+
+//   for (let i = 0; i < 60; i++) {
+//     if (cursor.weekday >= 1 && cursor.weekday <= 5) {
+//       const dateUtc = cursor.toUTC().toJSDate();
+//       const cap = await prisma.capacity.findUnique({
+//         where: { date: dateUtc },
+//       });
+
+//       if (cap && !(cap as any).closed && cap.usedCapacity < cap.totalCapacity) {
+//         // Calculate delivery date (skip Sundays)
+//         let delivery = cursor;
+//         let added = 0;
+//         while (added < deliveryLead) {
+//           delivery = delivery.plus({ days: 1 });
+//           if (delivery.weekday !== 7) added++;
+//         }
+
+//         return Response.json({
+//           despatchDateISO: cursor.toISODate(),
+//           despatchDateText: cursor.toFormat("d LLLL yyyy"),
+//           deliveryDateISO: delivery.toISODate(),
+//           deliveryDateText: delivery.toFormat("d LLLL yyyy"),
+//           remaining: cap.totalCapacity - cap.usedCapacity,
+//         });
+//       }
+//     }
+
+//     cursor = cursor.plus({ days: 1 });
+//   }
+
+//   return Response.json(
+//     { error: "No available despatch date" },
+//     { status: 404 }
+//   );
+// }
+
 import prisma from "app/db.server";
 import { DateTime } from "luxon";
 import type { LoaderFunctionArgs } from "react-router";
 import { getLeadTimes } from "app/services/allocationService";
 
+function corsResponse(data: any, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
+}
+
 export async function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const country = url.searchParams.get("country") ?? "GB";
-
-  // Load the only store’s settings
-  const settings = await prisma.storeSettings.findFirst();
-
-  if (!settings) {
-    return Response.json(
-      { error: "Store settings not found" },
-      { status: 500 }
-    );
+  // Handle OPTIONS preflight
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
   }
 
-  const tz = settings.timezone ?? "Europe/London";
-  const { despatchLead, deliveryLead } = await getLeadTimes(settings, country);
+  try {
+    const url = new URL(request.url);
+    const country = url.searchParams.get("country") ?? "GB";
 
-  // Find next available despatch date
-  let cursor = DateTime.now().setZone(tz).startOf("day");
+    const settings = await prisma.storeSettings.findFirst();
 
-  for (let i = 0; i < 60; i++) {
-    if (cursor.weekday >= 1 && cursor.weekday <= 5) {
-      const dateUtc = cursor.toUTC().toJSDate();
-      const cap = await prisma.capacity.findUnique({
-        where: { date: dateUtc },
-      });
-
-      if (cap && !(cap as any).closed && cap.usedCapacity < cap.totalCapacity) {
-        // Calculate delivery date (skip Sundays)
-        let delivery = cursor;
-        let added = 0;
-        while (added < deliveryLead) {
-          delivery = delivery.plus({ days: 1 });
-          if (delivery.weekday !== 7) added++;
-        }
-
-        return Response.json({
-          despatchDateISO: cursor.toISODate(),
-          despatchDateText: cursor.toFormat("d LLLL yyyy"),
-          deliveryDateISO: delivery.toISODate(),
-          deliveryDateText: delivery.toFormat("d LLLL yyyy"),
-          remaining: cap.totalCapacity - cap.usedCapacity,
-        });
-      }
+    if (!settings) {
+      return corsResponse(
+        { error: "Store settings not found" },
+        500
+      );
     }
 
-    cursor = cursor.plus({ days: 1 });
-  }
+    const tz = settings.timezone ?? "Europe/London";
+    const { despatchLead, deliveryLead } = await getLeadTimes(settings, country);
 
-  return Response.json(
-    { error: "No available despatch date" },
-    { status: 404 }
-  );
+    let cursor = DateTime.now().setZone(tz).startOf("day");
+
+    for (let i = 0; i < 60; i++) {
+      if (cursor.weekday >= 1 && cursor.weekday <= 5) {
+        const dateUtc = cursor.toUTC().toJSDate();
+        const cap = await prisma.capacity.findUnique({
+          where: { date: dateUtc },
+        });
+
+        if (cap && !(cap as any).closed && cap.usedCapacity < cap.totalCapacity) {
+          // delivery calculation
+          let delivery = cursor;
+          let added = 0;
+          while (added < deliveryLead) {
+            delivery = delivery.plus({ days: 1 });
+            if (delivery.weekday !== 7) added++;
+          }
+
+          return corsResponse({
+            despatchDateISO: cursor.toISODate(),
+            despatchDateText: cursor.toFormat("d LLLL yyyy"),
+            deliveryDateISO: delivery.toISODate(),
+            deliveryDateText: delivery.toFormat("d LLLL yyyy"),
+            remaining: cap.totalCapacity - cap.usedCapacity,
+          });
+        }
+      }
+
+      cursor = cursor.plus({ days: 1 });
+    }
+
+    return corsResponse({ error: "No available despatch date" }, 404);
+
+  } catch (error: any) {
+    console.error("API ERROR:", error);
+    return corsResponse(
+      { error: "Internal server error", details: error.message },
+      500
+    );
+  }
 }

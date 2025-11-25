@@ -209,7 +209,7 @@ export type StoreSettingsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type StoreSettingsGroupByOutputType = {
   id: number
-  shop: string
+  shop: string | null
   timezone: string
   defaultDespatchLead: number
   defaultDeliveryLead: number
@@ -244,7 +244,7 @@ export type StoreSettingsWhereInput = {
   OR?: Prisma.StoreSettingsWhereInput[]
   NOT?: Prisma.StoreSettingsWhereInput | Prisma.StoreSettingsWhereInput[]
   id?: Prisma.IntFilter<"StoreSettings"> | number
-  shop?: Prisma.StringFilter<"StoreSettings"> | string
+  shop?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
   timezone?: Prisma.StringFilter<"StoreSettings"> | string
   defaultDespatchLead?: Prisma.IntFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntFilter<"StoreSettings"> | number
@@ -256,7 +256,7 @@ export type StoreSettingsWhereInput = {
 
 export type StoreSettingsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  shop?: Prisma.SortOrder
+  shop?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
@@ -268,10 +268,10 @@ export type StoreSettingsOrderByWithRelationInput = {
 
 export type StoreSettingsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  shop?: string
   AND?: Prisma.StoreSettingsWhereInput | Prisma.StoreSettingsWhereInput[]
   OR?: Prisma.StoreSettingsWhereInput[]
   NOT?: Prisma.StoreSettingsWhereInput | Prisma.StoreSettingsWhereInput[]
+  shop?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
   timezone?: Prisma.StringFilter<"StoreSettings"> | string
   defaultDespatchLead?: Prisma.IntFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntFilter<"StoreSettings"> | number
@@ -279,11 +279,11 @@ export type StoreSettingsWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StoreSettings"> | Date | string
   accessToken?: Prisma.StringNullableFilter<"StoreSettings"> | string | null
-}, "id" | "shop">
+}, "id">
 
 export type StoreSettingsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  shop?: Prisma.SortOrder
+  shop?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   defaultDespatchLead?: Prisma.SortOrder
   defaultDeliveryLead?: Prisma.SortOrder
@@ -303,7 +303,7 @@ export type StoreSettingsScalarWhereWithAggregatesInput = {
   OR?: Prisma.StoreSettingsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.StoreSettingsScalarWhereWithAggregatesInput | Prisma.StoreSettingsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"StoreSettings"> | number
-  shop?: Prisma.StringWithAggregatesFilter<"StoreSettings"> | string
+  shop?: Prisma.StringNullableWithAggregatesFilter<"StoreSettings"> | string | null
   timezone?: Prisma.StringWithAggregatesFilter<"StoreSettings"> | string
   defaultDespatchLead?: Prisma.IntWithAggregatesFilter<"StoreSettings"> | number
   defaultDeliveryLead?: Prisma.IntWithAggregatesFilter<"StoreSettings"> | number
@@ -314,7 +314,7 @@ export type StoreSettingsScalarWhereWithAggregatesInput = {
 }
 
 export type StoreSettingsCreateInput = {
-  shop: string
+  shop?: string | null
   timezone?: string
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
@@ -326,7 +326,7 @@ export type StoreSettingsCreateInput = {
 
 export type StoreSettingsUncheckedCreateInput = {
   id?: number
-  shop: string
+  shop?: string | null
   timezone?: string
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
@@ -337,7 +337,7 @@ export type StoreSettingsUncheckedCreateInput = {
 }
 
 export type StoreSettingsUpdateInput = {
-  shop?: Prisma.StringFieldUpdateOperationsInput | string
+  shop?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
@@ -349,7 +349,7 @@ export type StoreSettingsUpdateInput = {
 
 export type StoreSettingsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop?: Prisma.StringFieldUpdateOperationsInput | string
+  shop?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
@@ -361,7 +361,7 @@ export type StoreSettingsUncheckedUpdateInput = {
 
 export type StoreSettingsCreateManyInput = {
   id?: number
-  shop: string
+  shop?: string | null
   timezone?: string
   defaultDespatchLead?: number
   defaultDeliveryLead?: number
@@ -372,7 +372,7 @@ export type StoreSettingsCreateManyInput = {
 }
 
 export type StoreSettingsUpdateManyMutationInput = {
-  shop?: Prisma.StringFieldUpdateOperationsInput | string
+  shop?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
@@ -384,7 +384,7 @@ export type StoreSettingsUpdateManyMutationInput = {
 
 export type StoreSettingsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  shop?: Prisma.StringFieldUpdateOperationsInput | string
+  shop?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   defaultDespatchLead?: Prisma.IntFieldUpdateOperationsInput | number
   defaultDeliveryLead?: Prisma.IntFieldUpdateOperationsInput | number
@@ -497,7 +497,7 @@ export type $StoreSettingsPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    shop: string
+    shop: string | null
     timezone: string
     defaultDespatchLead: number
     defaultDeliveryLead: number

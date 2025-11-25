@@ -67,7 +67,7 @@ model Capacity {
 
 model StoreSettings {
   id                  Int      @id @default(autoincrement())
-  shop                String   @unique
+  shop                String?   
   timezone            String   @default("Europe/London")
   defaultDespatchLead Int      @default(1)
   defaultDeliveryLead Int      @default(2)

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 type Settings = {
-  shop?: string;
   timezone?: string;
   defaultDespatchLead?: number;
   defaultDeliveryLead?: number;
@@ -10,18 +9,15 @@ type Settings = {
 };
 
 export default function ManageSettings() {
-  const params = new URLSearchParams(location.search);
-  const shop = params.get("shop") ?? "";
-
   const [timezone, setTimezone] = useState("Europe/London");
   const [despatchLead, setDespatchLead] = useState(1);
   const [deliveryLead, setDeliveryLead] = useState(2);
   const [countryOverrides, setCountryOverrides] = useState<any>({});
   const [msg, setMsg] = useState("");
 
+  // Fetch existing settings
   useEffect(() => {
-    if (!shop) return;
-    fetch(`/api/settings?shop=${encodeURIComponent(shop)}`)
+    fetch("/api/settings")
       .then((r) => r.json())
       .then((data) => {
         if (data) {
@@ -31,18 +27,15 @@ export default function ManageSettings() {
           setCountryOverrides(data.countryOverrides ?? {});
         }
       });
-  }, [shop]);
+  }, []);
 
   const save = async () => {
-    if (!shop) return setMsg("❌ Shop required in query string");
-
     setMsg("Saving...");
 
     const res = await fetch("/api/settings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        shop,
         timezone,
         defaultDespatchLead: despatchLead,
         defaultDeliveryLead: deliveryLead,
@@ -73,19 +66,11 @@ export default function ManageSettings() {
         </div>
       )}
 
-      {/* SHOP INFO */}
-      <div className="p-4 bg-white shadow rounded-2xl mb-6">
-        <h3 className="font-semibold mb-2 text-gray-700">Shop</h3>
-        <div className="text-gray-600 p-2 rounded bg-gray-100 border">{shop || "No shop provided"}</div>
-      </div>
-
       {/* GENERAL SETTINGS */}
       <div className="p-4 bg-white shadow rounded-2xl mb-6">
         <h3 className="font-semibold mb-4 text-gray-700">General Settings</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-          {/* Timezone */}
           <div className="flex flex-col">
             <label className="text-sm text-gray-600 mb-1">Timezone</label>
             <input
@@ -95,7 +80,6 @@ export default function ManageSettings() {
             />
           </div>
 
-          {/* Despatch Lead */}
           <div className="flex flex-col">
             <label className="text-sm text-gray-600 mb-1">Default Despatch Lead (days)</label>
             <input
@@ -106,7 +90,6 @@ export default function ManageSettings() {
             />
           </div>
 
-          {/* Delivery Lead */}
           <div className="flex flex-col">
             <label className="text-sm text-gray-600 mb-1">Default Delivery Lead (days)</label>
             <input
@@ -121,24 +104,92 @@ export default function ManageSettings() {
 
       {/* COUNTRY OVERRIDES */}
       <div className="p-4 bg-white shadow rounded-2xl mb-6">
-        <h3 className="font-semibold mb-4 text-gray-700">Country Overrides</h3>
+  <h3 className="font-semibold mb-4 text-gray-700">Country Overrides</h3>
 
-        <textarea
-          rows={8}
-          className="border p-3 rounded-md w-full font-mono text-sm bg-gray-50"
-          value={JSON.stringify(countryOverrides, null, 2)}
+  {Object.entries(countryOverrides).map(([country, leads]: any) => (
+    <div key={country} className="grid grid-cols-4 gap-2 items-end mb-3">
+      
+      {/* Country Code */}
+      <div className="flex flex-col">
+        <label className="text-xs text-gray-500 mb-1">Country</label>
+        <input
+          className="border p-2 rounded-md w-full text-center"
+          value={country}
           onChange={(e) => {
-            try {
-              setCountryOverrides(JSON.parse(e.target.value));
-            } catch {
-              // ignore JSON parse error
-            }
+            const newOverrides = { ...countryOverrides };
+            newOverrides[e.target.value] = leads;
+            if (e.target.value !== country) delete newOverrides[country];
+            setCountryOverrides(newOverrides);
+          }}
+          placeholder="Country code"
+        />
+      </div>
+
+      {/* Despatch Lead */}
+      <div className="flex flex-col">
+        <label className="text-xs text-gray-500 mb-1">Despatch Lead (days)</label>
+        <input
+          type="number"
+          className="border p-2 rounded-md w-full"
+          value={leads.despatchLead}
+          onChange={(e) => {
+            const newOverrides = { ...countryOverrides };
+            newOverrides[country] = { ...leads, despatchLead: Number(e.target.value) };
+            setCountryOverrides(newOverrides);
           }}
         />
-        <p className="text-xs text-gray-500 mt-2">
-          Enter JSON format. Example: <code>{`{"US": 2, "FR": 5}`}</code>
-        </p>
       </div>
+
+      {/* Delivery Lead */}
+      <div className="flex flex-col">
+        <label className="text-xs text-gray-500 mb-1">Delivery Lead (days)</label>
+        <input
+          type="number"
+          className="border p-2 rounded-md w-full"
+          value={leads.deliveryLead}
+          onChange={(e) => {
+            const newOverrides = { ...countryOverrides };
+            newOverrides[country] = { ...leads, deliveryLead: Number(e.target.value) };
+            setCountryOverrides(newOverrides);
+          }}
+        />
+      </div>
+
+      {/* Remove Button */}
+      <div className="flex flex-col">
+        <button
+          className="bg-red-500 text-white px-2 py-1 rounded mt-5"
+          onClick={() => {
+            const newOverrides = { ...countryOverrides };
+            delete newOverrides[country];
+            setCountryOverrides(newOverrides);
+          }}
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  ))}
+
+  {/* Add New Country */}
+  <button
+    className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    onClick={() => {
+      const newOverrides = { ...countryOverrides };
+      let newKey = "NEW";
+      let counter = 1;
+      // ensure unique key
+      while (newOverrides[newKey]) {
+        newKey = `NEW${counter++}`;
+      }
+      newOverrides[newKey] = { despatchLead: 1, deliveryLead: 1 };
+      setCountryOverrides(newOverrides);
+    }}
+  >
+    Add Country
+  </button>
+</div>
+
 
       {/* SAVE BUTTON */}
       <button

@@ -103,60 +103,116 @@
    
 //   );
 // }
+//current................
+// import '@shopify/ui-extensions/preact';
+// import { render } from 'preact';
+// import { useState, useEffect } from 'preact/hooks';
+
+// export default function extension() {
+//   render(<DeliveryDateExtension />, document.body);
+// }
+
+// function DeliveryDateExtension() {
+//   const [message, setMessage] = useState("Loading delivery date...");
+//   const [status, setStatus] = useState("info");
+
+//   useEffect(() => {
+//     async function fetchDeliveryDate() {
+//       try {
+//         console.log("Starting API call...");
+        
+//         const response = await fetch(`https://pickup-willing-rebel-warranty.trycloudflare.com/api/next-despatch`);
+        
+//         console.log("Response status:", response.status);
+//         console.log("Response ok:", response.ok);
+        
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+        
+//         const data = await response.json();
+//         console.log("API Response data:", data);
+
+//         if (data && data.deliveryDateText) {
+//           setMessage(`Estimated delivery: ${data.deliveryDateText}`);
+//           setStatus("success");
+//         } else {
+//           setMessage("Delivery date not available");
+//           setStatus("warning");
+//         }
+
+//       } catch (err) {
+//         console.log("FULL ERROR:", err);
+//         console.log("Error name:", err.name);
+//         console.log("Error message:", err.message);
+//         setMessage(`API Error: ${err.message}`);
+//         setStatus("critical");
+//       }
+//     }
+
+//     fetchDeliveryDate();
+//   }, []);
+
+//   return (
+//     <s-banner> {status}
+//       {/* Only use available properties */}
+//       Shop: {shopify.shop.name} - {message}
+//     </s-banner>
+//   );
+// }
+
 
 import '@shopify/ui-extensions/preact';
 import { render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
-export default function extension() {
+export default async () => {
   render(<DeliveryDateExtension />, document.body);
-}
+};
 
 function DeliveryDateExtension() {
-  const [message, setMessage] = useState("Loading delivery date...");
-  const [status, setStatus] = useState("info");
+  const [status, setStatus] = useState("loading");
+  const [message, setMessage] = useState("Fetching delivery date...");
 
   useEffect(() => {
-    async function fetchDeliveryDate() {
-      try {
-        console.log("Starting API call...");
-        
-        const response = await fetch(`https://pickup-willing-rebel-warranty.trycloudflare.com/api/next-despatch`);
-        
-        console.log("Response status:", response.status);
-        console.log("Response ok:", response.ok);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log("API Response data:", data);
-
-        if (data && data.deliveryDateText) {
-          setMessage(`Estimated delivery: ${data.deliveryDateText}`);
-          setStatus("success");
-        } else {
-          setMessage("Delivery date not available");
-          setStatus("warning");
-        }
-
-      } catch (err) {
-        console.log("FULL ERROR:", err);
-        console.log("Error name:", err.name);
-        console.log("Error message:", err.message);
-        setMessage(`API Error: ${err.message}`);
-        setStatus("critical");
-      }
-    }
-
     fetchDeliveryDate();
   }, []);
 
-  return (
-    <s-banner> {status}
-      {/* Only use available properties */}
-      Shop: {shopify.shop.name} - {message}
-    </s-banner>
-  );
+  const fetchDeliveryDate = async () => {
+    try {
+      console.log("Starting API call...");
+
+      const response = await fetch(
+        "https://dam-compare-henderson-news.trycloudflare.com/api/next-despatch"
+      );
+
+      console.log("Response status:", response.status);
+
+      const data = await response.json();
+      console.log("API Response data:", data);
+
+      if (data && data.deliveryDateText) {
+        setMessage(`Estimated delivery: ${data.deliveryDateText}`);
+        setStatus("success");
+      } else {
+        setMessage("Delivery date not available");
+        setStatus("warning");
+      }
+    } catch (err) {
+      console.error("ERROR:", err);
+      setMessage(`API Error: ${err.message}`);
+      setStatus("critical");
+    }
+  };
+
+  // Render banner only when API is done loading
+  if (status !== "loading") {
+    return (
+      <s-banner heading="Delivery Information">
+        <s-text>{message}</s-text>
+      </s-banner>
+    );
+  }
+
+  return null;
 }
