@@ -31,7 +31,7 @@
 # # CMD ["npm", "run", "docker-start"]\
 # CMD ["npm", "start"]
 #newww......
-FROM node:20-alpine
+FROM node:20
 RUN apk add --no-cache openssl
 
 EXPOSE 3000
