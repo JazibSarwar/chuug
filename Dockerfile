@@ -46,8 +46,11 @@ COPY . .
 # Install dependencies (devDependencies included)
 RUN npm install
 
-# Generate Prisma client now that schema exists
-RUN npm run prisma:generate
+# Copy .env file if it exists (optional, for build-time variables)
+COPY .env ./
+
+# Generate Prisma client (this will use DATABASE_URL from Railway environment)
+RUN npx prisma generate
 
 # Build your app
 RUN npm run build
