@@ -33,24 +33,26 @@
 #newww......
 FROM node:20
 
+# install OS deps
 RUN apt-get update && apt-get install -y openssl
-
-EXPOSE 3000
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+# 1) copy only package files to leverage cache
+COPY package.json package-lock.json ./
 
-# Copy everything
-COPY . .
-
-# Install dependencies (including dev dependencies for build tools)
+# 2) install dependencies (including dev so prisma CLI is present)
 RUN npm install
 
-# Build your app
+# 3) copy the rest of the repo
+COPY . .
+
+# 4) generate prisma client now that schema exists in the container (generates debian engine)
+RUN npx prisma generate
+
+# 5) build the app
 RUN npm run build
 
-# Install react-router-serve globally
-RUN npm install -g @react-router/serve
-
-CMD npx prisma generate && npx prisma migrate deploy && npx @react-router/serve ./build/server/index.js
+# 6) expose and start
+EXPOSE 3000
+CMD ["npm", "run", "docker-start"]
