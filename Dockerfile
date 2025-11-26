@@ -43,14 +43,13 @@ ENV NODE_ENV=production
 # Copy everything
 COPY . .
 
-# Install dependencies
+# Install dependencies (including dev dependencies for build tools)
 RUN npm install
-
-# Skip prisma generate during build - it will run at runtime
-# RUN npx prisma generate
 
 # Build your app
 RUN npm run build
 
-# Update the start command to generate prisma client first
-CMD npx prisma generate && npm run start
+# Install react-router-serve globally
+RUN npm install -g @react-router/serve
+
+CMD npx prisma generate && npx prisma migrate deploy && npx @react-router/serve ./build/server/index.js
