@@ -30,7 +30,7 @@ app.use(
 );
 
 // Remix request handler
-const build = await import("../build/server/index.js");
+const build = await import("../build/index.js");
 app.all(
   "*",
   createRequestHandler({
