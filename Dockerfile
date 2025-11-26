@@ -40,12 +40,10 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package.json package-lock.json* ./
-
-RUN npm ci --omit=dev && npm cache clean --force
-
+# COPY everything first
 COPY . .
 
-RUN npm run build
+# Install dependencies (with dev if you need Prisma CLI)
+RUN npm install && npm run build
 
 CMD ["npm", "run", "docker-start"]
