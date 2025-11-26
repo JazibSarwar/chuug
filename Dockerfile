@@ -32,20 +32,20 @@
 # CMD ["npm", "start"]
 #newww......
 FROM node:20-alpine
-
-# Install OpenSSL (Prisma needs it)
 RUN apk add --no-cache openssl
+
+EXPOSE 3000
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-COPY prisma ./prisma
+ENV NODE_ENV=production
 
-RUN npm install
-RUN npx prisma generate
+COPY package.json package-lock.json* ./
+
+RUN npm ci --omit=dev && npm cache clean --force
 
 COPY . .
 
 RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "docker-start"]
