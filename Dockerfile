@@ -32,7 +32,8 @@
 # CMD ["npm", "start"]
 #newww......
 FROM node:20
-RUN apk add --no-cache openssl
+
+RUN apt-get update && apt-get install -y openssl
 
 EXPOSE 3000
 
