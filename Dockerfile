@@ -31,28 +31,44 @@
 # # CMD ["npm", "run", "docker-start"]\
 # CMD ["npm", "start"]
 #newww......
+# -----------------------------
+# Base image
+# -----------------------------
 FROM node:20
 
-# install OS deps
+# -----------------------------
+# Install OS dependencies
+# -----------------------------
 RUN apt-get update && apt-get install -y openssl
 
+# -----------------------------
+# Set working directory
+# -----------------------------
 WORKDIR /app
 
-# 1) copy only package files to leverage cache
+# -----------------------------
+# Copy package files and install dependencies
+# -----------------------------
 COPY package.json package-lock.json ./
-
-# 2) install dependencies (including dev so prisma CLI is present)
 RUN npm install
 
-# 3) copy the rest of the repo
+# -----------------------------
+# Copy the rest of the source code
+# -----------------------------
 COPY . .
 
-# 4) generate prisma client now that schema exists in the container (generates debian engine)
-RUN npx prisma generate
-
-# 5) build the app
-RUN npm run build
-
-# 6) expose and start
+# -----------------------------
+# Expose the app port
+# -----------------------------
 EXPOSE 3000
-CMD ["npm", "run", "docker-start"]
+
+# -----------------------------
+# Set environment variable placeholders (optional defaults)
+# -----------------------------
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# -----------------------------
+# Start command: generate Prisma client at runtime, then start app
+# -----------------------------
+CMD npx prisma generate && npm run docker-start
