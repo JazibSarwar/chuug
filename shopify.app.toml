@@ -27,4 +27,4 @@ uri = "/webhooks/orders-create"
 scopes = "read_orders , write_orders"
 
 [auth]
-redirect_urls = [ "https://delivery-dates-production.up.railway.app" ]
+redirect_urls = [ "https://delivery-dates-production.up.railway.app/api/auth" ]
