@@ -86,6 +86,7 @@ app.use(
 // ------------------------------
 // Remix Request Handler
 // ------------------------------
+// @ts-ignore
 const build = await import("../build/index.js"); // top-level await works with ESM
 app.all(
   "*",
