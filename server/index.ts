@@ -23,7 +23,7 @@ app.use(
     apiKey: process.env.SHOPIFY_API_KEY!,
     apiSecretKey: process.env.SHOPIFY_API_SECRET!,
     scopes: process.env.SCOPES!.split(","),
-    appUrl: process.env.HOST!,
+    appUrl: process.env.SHOP_APP_URL!,
     sessionStorage: sessionStorage,
     apiVersion: ApiVersion.October25, // required
   }) as unknown as express.RequestHandler
