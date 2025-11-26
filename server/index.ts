@@ -7,6 +7,7 @@ import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prism
 import prisma from "../app/db.server.js";
 const app = express();
 const port = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 const sessionStorage = new PrismaSessionStorage(prisma, {
   tableName: "shopify_sessions", // optional, default: "Session"
   connectionRetries: 3,           // optional
@@ -38,6 +39,6 @@ app.all(
   })
 );
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+app.listen(port, HOST, () => {
+  console.log(`Server running on port ${port}`);
 });
